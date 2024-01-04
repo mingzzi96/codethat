@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import { getCourseBySlug, getQuestionById } from "../api";
+import { getQuestionById } from "../api";
 import Avatar from "../components/Avatar";
 import Card from "../components/Card";
 import Container from "../components/Container";
