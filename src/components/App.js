@@ -3,10 +3,14 @@ import Footer from "../components/Footer";
 import styles from "./App.module.css";
 import "./App.font.css";
 import { Outlet } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function App() {
   return (
     <>
+      <Helmet>
+        <title>CODE That</title>
+      </Helmet>
       <Nav className={styles.nav} />
       <div className={styles.body}>
         <Outlet />

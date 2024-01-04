@@ -9,30 +9,38 @@ import styles from "./QuestionListPage.module.css";
 import searchBarStyles from "../components/SearchBar.module.css";
 import searchIcon from "../assets/search.svg";
 import { Link, useSearchParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function QuestionItem({ question }) {
   return (
-    <Card className={styles.questionItem} key={question.title}>
-      <div className={styles.info}>
-        <Link to={`/questions/${question.id}`}>
-          <p className={styles.title}>
-            {question.title}
-            {question.answers.length > 0 && (
-              <span className={styles.count}>[{question.answers.length}]</span>
-            )}
+    <>
+      <Helmet>
+        <title>CODE That - 커뮤니티</title>
+      </Helmet>
+      <Card className={styles.questionItem} key={question.title}>
+        <div className={styles.info}>
+          <Link to={`/questions/${question.id}`}>
+            <p className={styles.title}>
+              {question.title}
+              {question.answers.length > 0 && (
+                <span className={styles.count}>
+                  [{question.answers.length}]
+                </span>
+              )}
+            </p>
+          </Link>
+          <p className={styles.date}>
+            <DateText value={question.createdAt} />
           </p>
-        </Link>
-        <p className={styles.date}>
-          <DateText value={question.createdAt} />
-        </p>
-      </div>
-      <div className={styles.writer}>
-        <Avatar
-          photo={question.writer.profile.photo}
-          name={question.writer.name}
-        />
-      </div>
-    </Card>
+        </div>
+        <div className={styles.writer}>
+          <Avatar
+            photo={question.writer.profile.photo}
+            name={question.writer.name}
+          />
+        </div>
+      </Card>
+    </>
   );
 }
 

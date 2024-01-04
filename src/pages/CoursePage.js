@@ -6,6 +6,7 @@ import CourseIcon from "../components/CourseIcon";
 import getCourseColor from "../utils/getCourseColor";
 import styles from "./CoursePage.module.css";
 import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function CoursePage() {
   const { courseSlug } = useParams();
@@ -28,6 +29,9 @@ function CoursePage() {
 
   return (
     <>
+      <Helmet>
+        <title>CODE That - 카탈로그 상세</title>
+      </Helmet>
       <div className={styles.header} style={headerStyle}>
         <Container className={styles.content}>
           <CourseIcon photoUrl={course.photoUrl} />

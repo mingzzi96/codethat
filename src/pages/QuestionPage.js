@@ -8,6 +8,7 @@ import Lined from "../components/Lined";
 import Warn from "../components/Warn";
 import styles from "./QuestionPage.module.css";
 import { Navigate, useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 function QuestionPage() {
   const { questionId } = useParams();
@@ -20,6 +21,9 @@ function QuestionPage() {
 
   return (
     <>
+      <Helmet>
+        <title>CODE That - 커뮤니티 상세</title>
+      </Helmet>
       <div className={styles.header}>
         <Container>
           <div className={styles.question}>
