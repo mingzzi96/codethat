@@ -8,7 +8,7 @@ import Avatar from "../components/Avatar";
 import styles from "./QuestionListPage.module.css";
 import searchBarStyles from "../components/SearchBar.module.css";
 import searchIcon from "../assets/search.svg";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 function QuestionItem({ question }) {
   return (
@@ -37,10 +37,17 @@ function QuestionItem({ question }) {
 }
 
 function QuestionListPage() {
-  const [keyword, setKeyword] = useState("");
-  const questions = getQuestions();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const initKeyword = searchParams.get("keyword");
+  const [keyword, setKeyword] = useState(initKeyword || "");
+  const questions = getQuestions(initKeyword);
 
   const handleKeywordChange = (e) => setKeyword(e.target.value);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSearchParams(keyword ? { keyword } : {});
+  };
 
   return (
     <ListPage
@@ -54,6 +61,7 @@ function QuestionListPage() {
           value={keyword}
           placeholder="검색으로 질문 찾기"
           onChange={handleKeywordChange}
+          onSubmit={handleSubmit}
         />
         <button type="submit">
           <img src={searchIcon} alt="검색" />
